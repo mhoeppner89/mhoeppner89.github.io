@@ -7,7 +7,7 @@ Static research homepage for:
 ## Contents
 
 - Publications
-- Selected working papers
+- Ongoing projects
 - Research themes
 - Links to Google Scholar, ORCID, and GitHub
 
