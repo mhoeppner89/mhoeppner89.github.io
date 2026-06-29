@@ -56,12 +56,26 @@
 
     .hero {
       position: relative;
+      isolation: isolate;
       overflow: hidden;
       background:
-        linear-gradient(90deg, rgba(246, 247, 248, 0.98) 0%, rgba(246, 247, 248, 0.9) 56%, rgba(246, 247, 248, 0.72) 100%),
-        url("https://avatars.githubusercontent.com/u/196459050?v=4") right 10vw center / min(31vw, 390px) auto no-repeat,
+        linear-gradient(90deg, rgba(246, 247, 248, 0.98) 0%, rgba(246, 247, 248, 0.9) 58%, rgba(246, 247, 248, 0.82) 100%),
         var(--soft);
       border-bottom: 1px solid var(--line);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 10vw;
+      width: min(31vw, 390px);
+      aspect-ratio: 1;
+      background: url("https://avatars.githubusercontent.com/u/196459050?v=4") center / contain no-repeat;
+      filter: saturate(1.03) contrast(1.03);
+      transform: translateY(-50%);
+      pointer-events: none;
+      z-index: 0;
     }
 
     .hero::after {
@@ -73,6 +87,7 @@
       background: color-mix(in srgb, var(--accent-2) 12%, transparent);
       transform: rotate(-7deg);
       pointer-events: none;
+      z-index: 0;
     }
 
     .wrap {
@@ -87,6 +102,8 @@
       gap: 24px;
       padding: 22px 0;
       font-size: 0.94rem;
+      position: relative;
+      z-index: 1;
     }
 
     .brand {
@@ -407,8 +424,14 @@
       .hero {
         background:
           linear-gradient(180deg, rgba(246, 247, 248, 0.98) 0%, rgba(246, 247, 248, 0.92) 100%),
-          url("https://avatars.githubusercontent.com/u/196459050?v=4") right 18px top 92px / 128px auto no-repeat,
           var(--soft);
+      }
+
+      .hero::before {
+        top: 92px;
+        right: 18px;
+        width: 128px;
+        transform: none;
       }
 
       .topbar {
