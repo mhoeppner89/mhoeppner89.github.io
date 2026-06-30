@@ -64,20 +64,6 @@
       border-bottom: 1px solid var(--line);
     }
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      right: 10vw;
-      width: min(31vw, 390px);
-      aspect-ratio: 1;
-      background: url("https://avatars.githubusercontent.com/u/196459050?v=4") center / contain no-repeat;
-      filter: saturate(1.03) contrast(1.03);
-      transform: translateY(-50%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
     .wrap {
       width: min(1120px, calc(100% - 40px));
       margin: 0 auto;
@@ -120,8 +106,8 @@
       min-height: 520px;
       display: grid;
       align-items: center;
-      grid-template-columns: minmax(0, 0.92fr) minmax(260px, 0.62fr);
-      gap: 48px;
+      grid-template-columns: minmax(0, 1fr) minmax(240px, 340px);
+      gap: clamp(36px, 5vw, 64px);
       padding: 56px 0 72px;
       position: relative;
       z-index: 1;
@@ -129,10 +115,37 @@
 
     .hero-copy {
       max-width: 720px;
+      min-width: 0;
+    }
+
+    .portrait-desktop {
+      align-self: center;
+      justify-self: end;
+      width: 100%;
+      max-width: 340px;
+    }
+
+    .portrait-desktop img,
+    .portrait-mobile {
+      aspect-ratio: 1;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .portrait-desktop img {
+      display: block;
+      width: 100%;
+      filter: saturate(1.03) contrast(1.03);
     }
 
     .portrait-mobile {
       display: none;
+      width: 96px;
+      height: 96px;
+      margin: 0 0 24px;
+      border: 1px solid rgba(215, 221, 231, 0.95);
+      border-radius: 50%;
+      box-shadow: 0 12px 28px rgba(31, 36, 48, 0.16);
     }
 
     .eyebrow {
@@ -370,13 +383,6 @@
           var(--soft);
       }
 
-      .hero::before {
-        top: 92px;
-        right: 18px;
-        width: 128px;
-        transform: none;
-      }
-
       .topbar {
         align-items: center;
         flex-direction: row;
@@ -386,6 +392,14 @@
         min-height: auto;
         padding: 70px 0 48px;
         grid-template-columns: 1fr;
+      }
+
+      .portrait-desktop {
+        display: none;
+      }
+
+      .portrait-mobile {
+        display: block;
       }
 
       .section-head,
@@ -419,19 +433,10 @@
         flex-direction: column;
       }
 
-      .hero::before {
-        display: none;
-      }
-
       .portrait-mobile {
-        display: block;
         width: 92px;
         height: 92px;
         margin: 0 0 22px;
-        border: 1px solid rgba(215, 221, 231, 0.95);
-        border-radius: 50%;
-        object-fit: cover;
-        box-shadow: 0 12px 28px rgba(31, 36, 48, 0.16);
       }
 
       .hero-body {
@@ -478,6 +483,9 @@
               <a class="button" href="https://scholar.google.com/citations?user=GeGIjN0AAAAJ&amp;hl=en">Google Scholar</a>
               <a class="button" href="https://orcid.org/0009-0006-7904-295X">ORCID</a>
             </div>
+          </div>
+          <div class="portrait-desktop" aria-hidden="true">
+            <img src="https://avatars.githubusercontent.com/u/196459050?v=4" alt="">
           </div>
         </div>
       </div>
