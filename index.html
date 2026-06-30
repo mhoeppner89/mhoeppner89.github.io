@@ -132,7 +132,7 @@
       min-height: 520px;
       display: grid;
       align-items: center;
-      grid-template-columns: minmax(0, 0.92fr) minmax(320px, 0.62fr);
+      grid-template-columns: minmax(0, 0.92fr) minmax(260px, 0.62fr);
       gap: 48px;
       padding: 56px 0 72px;
       position: relative;
@@ -143,53 +143,8 @@
       max-width: 720px;
     }
 
-    .hero-card {
-      align-self: end;
-      background: rgba(255, 255, 255, 0.86);
-      border: 1px solid rgba(215, 221, 231, 0.9);
-      border-radius: 8px;
-      box-shadow: var(--shadow);
-      padding: 22px;
-      backdrop-filter: blur(10px);
-    }
-
-    .hero-card h2 {
-      margin: 0 0 14px;
-      font-size: 1.02rem;
-      letter-spacing: 0;
-    }
-
-    .hero-card ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      gap: 12px;
-    }
-
-    .hero-card li {
-      display: grid;
-      grid-template-columns: 10px minmax(0, 1fr);
-      gap: 10px;
-      color: var(--muted);
-      font-size: 0.96rem;
-    }
-
-    .hero-card li::before {
-      content: "";
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      margin-top: 0.45em;
-      background: var(--accent);
-    }
-
-    .hero-card li:nth-child(2)::before {
-      background: var(--accent-2);
-    }
-
-    .hero-card li:nth-child(3)::before {
-      background: var(--accent-3);
+    .portrait-mobile {
+      display: none;
     }
 
     .eyebrow {
@@ -445,11 +400,6 @@
         grid-template-columns: 1fr;
       }
 
-      .hero-card {
-        align-self: start;
-        max-width: 560px;
-      }
-
       .section-head,
       .grid,
       .next-list,
@@ -481,9 +431,24 @@
         flex-direction: column;
       }
 
+      .hero::before {
+        display: none;
+      }
+
+      .portrait-mobile {
+        display: block;
+        width: 92px;
+        height: 92px;
+        margin: 0 0 22px;
+        border: 1px solid rgba(215, 221, 231, 0.95);
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 12px 28px rgba(31, 36, 48, 0.16);
+      }
+
       .hero-body {
         min-height: auto;
-        padding-top: 108px;
+        padding-top: 42px;
         padding-bottom: 54px;
       }
 
@@ -510,6 +475,7 @@
 
         <div class="hero-body">
           <div class="hero-copy">
+            <img class="portrait-mobile" src="https://avatars.githubusercontent.com/u/196459050?v=4" alt="" aria-hidden="true">
             <p class="eyebrow">Behavioral economics · risk · decision theory</p>
             <h1>Research on decisions under risk and uncertainty.</h1>
             <p class="lead">
@@ -525,15 +491,6 @@
               <a class="button" href="https://orcid.org/0009-0006-7904-295X">ORCID</a>
             </div>
           </div>
-
-          <aside class="hero-card" aria-label="Research focus">
-            <h2>Research focus</h2>
-            <ul>
-              <li>Decision making under risk and uncertainty.</li>
-              <li>Adaptive behavior around thresholds, deadlines, and aspiration levels.</li>
-              <li>Behavioral welfare and model choice under mechanism uncertainty.</li>
-            </ul>
-          </aside>
         </div>
       </div>
     </header>
