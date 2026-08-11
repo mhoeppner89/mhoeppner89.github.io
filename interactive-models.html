@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An interactive companion to Martin Höppner's paper on models in decision-making under risk and uncertainty.">
+  <title>One Choice, Many Lenses | Martin Höppner</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #1f2430;
+      --muted: #596474;
+      --line: #d9dee7;
+      --paper: #f6f7f8;
+      --surface: #ffffff;
+      --accent: #006b67;
+      --accent-2: #8f2f44;
+      --focus: #b56b00;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.62;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.18em;
+    }
+
+    a:hover {
+      color: var(--accent-2);
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    .wrap {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 22px 0;
+      font-size: 0.94rem;
+    }
+
+    .brand {
+      font-weight: 750;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+
+    .nav a:hover {
+      border-bottom-color: currentColor;
+    }
+
+    .paper-hero {
+      background:
+        linear-gradient(115deg, rgba(231, 240, 238, 0.96), rgba(246, 247, 248, 0.92) 58%, rgba(242, 237, 240, 0.94)),
+        #e7f0ee;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-body {
+      padding: 58px 0 64px;
+    }
+
+    .kicker {
+      margin: 0 0 18px;
+      color: var(--accent);
+      font-size: 0.96rem;
+      font-weight: 750;
+    }
+
+    h1 {
+      max-width: 860px;
+      margin: 0;
+      font-size: clamp(2.35rem, 5vw, 4.9rem);
+      line-height: 1;
+      letter-spacing: 0;
+      overflow-wrap: break-word;
+      hyphens: auto;
+    }
+
+    .byline {
+      max-width: 760px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: clamp(1.02rem, 1.5vw, 1.17rem);
+    }
+
+    .lens-band {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .lens-wrap {
+      padding: 44px 0 50px;
+    }
+
+    .lens-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 0.78fr) minmax(0, 1fr);
+      gap: 34px;
+      align-items: end;
+      margin-bottom: 30px;
+    }
+
+    .lens-kicker,
+    .lens-scenario-label,
+    .lens-selector-label,
+    .lens-detail-label {
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .lens-kicker {
+      margin: 0 0 10px;
+    }
+
+    .lens-intro h2 {
+      margin: 0;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      line-height: 1.08;
+    }
+
+    .lens-intro > p {
+      max-width: 62ch;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .lens-scenario {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(270px, 0.9fr);
+      gap: 34px;
+      align-items: start;
+      padding: 26px 0 24px;
+      border-top: 3px solid var(--accent);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .lens-scenario-label {
+      margin: 0 0 9px;
+    }
+
+    .lens-scenario h3 {
+      margin: 0;
+      font-size: clamp(1.35rem, 2vw, 1.75rem);
+      line-height: 1.15;
+    }
+
+    .lens-scenario-copy > p:not(.lens-scenario-label) {
+      max-width: 62ch;
+      margin: 14px 0 0;
+    }
+
+    .lens-numbers {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      align-self: center;
+    }
+
+    .lens-number {
+      min-width: 0;
+      border-left: 3px solid var(--accent-2);
+      padding-left: 12px;
+    }
+
+    .lens-number strong {
+      display: block;
+      font-size: clamp(1.3rem, 2.3vw, 1.8rem);
+      font-weight: 500;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .lens-number span {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.25;
+    }
+
+    .lens-options {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px;
+      margin-top: 22px;
+    }
+
+    .lens-option {
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+    }
+
+    .lens-option h4 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .lens-option p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .lens-layout {
+      display: grid;
+      grid-template-columns: minmax(200px, 0.76fr) minmax(0, 1.24fr);
+      gap: 36px;
+      align-items: start;
+      margin-top: 38px;
+    }
+
+    .lens-selector-label {
+      margin: 0 0 10px;
+    }
+
+    .lens-buttons {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    .lens-button {
+      display: block;
+      width: 100%;
+      padding: 10px 12px 10px 0;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      background: transparent;
+      color: var(--ink);
+      font: inherit;
+      line-height: 1.25;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .lens-button:hover,
+    .lens-button.is-selected {
+      color: var(--accent);
+    }
+
+    .lens-button.is-selected {
+      font-weight: 500;
+    }
+
+    .lens-detail {
+      border-left: 4px solid var(--accent);
+      padding: 4px 0 5px 20px;
+    }
+
+    .lens-detail-label {
+      margin: 0 0 9px;
+      color: var(--muted);
+    }
+
+    .lens-detail h3 {
+      margin: 0;
+      font-size: clamp(1.4rem, 2.4vw, 2rem);
+      line-height: 1.12;
+    }
+
+    .lens-detail-category {
+      margin: 8px 0 0;
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .lens-detail-summary {
+      max-width: 62ch;
+      margin: 17px 0 0;
+      color: var(--muted);
+    }
+
+    .lens-detail dl {
+      display: grid;
+      gap: 16px;
+      margin: 23px 0 0;
+    }
+
+    .lens-detail dt {
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .lens-detail dd {
+      max-width: 62ch;
+      margin: 4px 0 0;
+    }
+
+    .lens-section-link {
+      display: inline-block;
+      margin-top: 23px;
+      font-size: 0.92rem;
+      font-weight: 500;
+    }
+
+    footer {
+      padding: 28px 0 42px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 900px) {
+      .lens-intro,
+      .lens-scenario,
+      .lens-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .lens-detail {
+        border-top: 3px solid var(--accent);
+        border-left: 0;
+        padding: 18px 0 0;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .wrap {
+        width: min(100% - 28px, 1160px);
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero-body {
+        padding: 44px 0 50px;
+      }
+
+      h1 {
+        max-width: 16ch;
+        font-size: clamp(1.95rem, 8.4vw, 2.25rem);
+        line-height: 1.04;
+      }
+
+      .byline {
+        max-width: 31ch;
+      }
+
+      .lens-wrap {
+        padding: 36px 0 42px;
+      }
+
+      .lens-numbers,
+      .lens-options {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="paper-hero">
+    <div class="wrap">
+      <div class="topbar" aria-label="Site header">
+        <div class="brand">Martin Höppner</div>
+        <nav class="nav" aria-label="Primary navigation">
+          <a href="./">Research</a>
+          <a href="papers/models-risk-uncertainty/">Published paper</a>
+        </nav>
+      </div>
+
+      <div class="hero-body">
+        <p class="kicker">Interactive companion</p>
+        <h1>Models in Decision-Making Under Risk and Uncertainty</h1>
+        <p class="byline">One decision viewed through the different model lenses discussed in the published paper.</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="lens-band" id="model-lenses" aria-labelledby="lens-title">
+      <div class="wrap lens-wrap">
+        <div class="lens-intro">
+          <div>
+            <p class="lens-kicker">Explore the example</p>
+            <h2 id="lens-title">One choice, many lenses</h2>
+          </div>
+          <p>
+            The same decision can look different depending on what a model treats as important.
+            Select a lens to see what it notices, how it reads the choice, and what it leaves open.
+          </p>
+        </div>
+
+        <div class="lens-scenario" aria-labelledby="lens-scenario-title">
+          <div class="lens-scenario-copy">
+            <p class="lens-scenario-label">The decision</p>
+            <h3 id="lens-scenario-title">Would you buy flood insurance?</h3>
+            <p>
+              You own a house worth €300,000. A serious flood could cause about €50,000 in damage.
+              Insurance costs €420 per year. Historical data suggest an annual flood probability of
+              roughly 1%, but climate change makes that estimate uncertain.
+            </p>
+          </div>
+          <div class="lens-numbers" aria-label="Scenario figures">
+            <div class="lens-number">
+              <strong>€420</strong>
+              <span>annual premium</span>
+            </div>
+            <div class="lens-number">
+              <strong>€50,000</strong>
+              <span>potential damage</span>
+            </div>
+            <div class="lens-number">
+              <strong>≈1%</strong>
+              <span>estimated annual probability</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lens-options" aria-label="The two choices">
+          <div class="lens-option">
+            <h4>Buy insurance</h4>
+            <p>Pay €420 each year; a serious flood is covered.</p>
+          </div>
+          <div class="lens-option">
+            <h4>Skip insurance</h4>
+            <p>Pay no premium; keep the financial exposure.</p>
+          </div>
+        </div>
+
+        <div class="lens-layout">
+          <div>
+            <p class="lens-selector-label" id="lens-selector-label">Select a lens</p>
+            <div class="lens-buttons" aria-labelledby="lens-selector-label">
+              <button class="lens-button is-selected" type="button" aria-pressed="true" data-lens-id="eut">Expected Utility Theory</button>
+              <button class="lens-button" type="button" aria-pressed="false" data-lens-id="cpt">Cumulative Prospect Theory</button>
+              <button class="lens-button" type="button" aria-pressed="false" data-lens-id="regret">Regret Theory</button>
+              <button class="lens-button" type="button" aria-pressed="false" data-lens-id="risk-sensitivity">Risk-sensitivity Theory</button>
+              <button class="lens-button" type="button" aria-pressed="false" data-lens-id="heuristics">Fast &amp; Frugal Heuristics</button>
+              <button class="lens-button" type="button" aria-pressed="false" data-lens-id="fuzzy">Fuzzy / ambiguity models</button>
+              <button class="lens-button" type="button" aria-pressed="false" data-lens-id="psychological">Psychological risk–return models</button>
+              <button class="lens-button" type="button" aria-pressed="false" data-lens-id="quantum">Quantum probability</button>
+              <button class="lens-button" type="button" aria-pressed="false" data-lens-id="neural">Deep neural networks</button>
+            </div>
+          </div>
+
+          <aside class="lens-detail" id="lens-detail" aria-live="polite" aria-labelledby="lens-detail-title">
+            <p class="lens-detail-label">Selected lens</p>
+            <h3 id="lens-detail-title">Expected Utility Theory</h3>
+            <p class="lens-detail-category" id="lens-detail-category">Normative benchmark</p>
+            <p class="lens-detail-summary" id="lens-detail-summary">
+              Compares the utility of paying €420 for protection with the utility of keeping the €50,000 exposure.
+            </p>
+            <dl>
+              <div>
+                <dt>How it reads the choice</dt>
+                <dd id="lens-detail-reading">If the probability and damage estimate are credible, the decision depends on risk aversion and the value of financial security—not expected euros alone.</dd>
+              </div>
+              <div>
+                <dt>What it leaves open</dt>
+                <dd id="lens-detail-limit">It does not by itself explain why a rare, vivid loss may feel more important than its probability.</dd>
+              </div>
+            </dl>
+            <a class="lens-section-link" id="lens-section-link" href="papers/models-risk-uncertainty/#x1-20002">Read Section 2 of the paper</a>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <span>© 2026 Martin Höppner.</span>
+  </footer>
+
+  <script>
+    (() => {
+      const root = document.getElementById("model-lenses");
+      if (!root) return;
+
+      const detailTitle = document.getElementById("lens-detail-title");
+      const detailCategory = document.getElementById("lens-detail-category");
+      const detailSummary = document.getElementById("lens-detail-summary");
+      const detailReading = document.getElementById("lens-detail-reading");
+      const detailLimit = document.getElementById("lens-detail-limit");
+      const sectionLink = document.getElementById("lens-section-link");
+      const lensButtons = Array.from(root.querySelectorAll(".lens-button"));
+
+      const lenses = {
+        eut: {
+          name: "Expected Utility Theory",
+          category: "Normative benchmark",
+          summary: "Compares the utility of paying €420 for protection with the utility of keeping the €50,000 exposure.",
+          reading: "If the probability and damage estimate are credible, the decision depends on risk aversion and the value of financial security—not expected euros alone.",
+          limit: "It does not by itself explain why a rare, vivid loss may feel more important than its probability.",
+          section: "papers/models-risk-uncertainty/#x1-20002",
+          sectionLabel: "Section 2 of the paper"
+        },
+        cpt: {
+          name: "Cumulative Prospect Theory",
+          category: "Reference-dependent behavior",
+          summary: "Treats the €50,000 loss as a loss relative to your home and financial security, and can give extra weight to a small chance of a large loss.",
+          reading: "The vivid flood outcome and the roughly 1% probability may loom larger than their objective contribution, especially if the reference point is living safely in the house.",
+          limit: "The result depends on the chosen reference point and behavioral parameters.",
+          section: "papers/models-risk-uncertainty/#x1-70004.3",
+          sectionLabel: "Section 4.3 of the paper"
+        },
+        regret: {
+          name: "Regret Theory",
+          category: "Counterfactual comparison",
+          summary: "Asks which future would be harder to live with: paying for cover when no flood occurs, or skipping it and later facing the damage.",
+          reading: "The insurance decision is a comparison between two possible regrets, not only a comparison of expected payoffs.",
+          limit: "It needs a psychologically plausible account of how the person imagines and weighs those counterfactuals.",
+          section: "papers/models-risk-uncertainty/#x1-90004.5",
+          sectionLabel: "Section 4.5 of the paper"
+        },
+        "risk-sensitivity": {
+          name: "Risk-sensitivity Theory",
+          category: "Thresholds and adaptation",
+          summary: "Focuses on whether €50,000 would threaten an important financial buffer, goal, or level of security.",
+          reading: "Insurance is attractive when a flood could push the household below a critical threshold, even if the average loss looks small.",
+          limit: "The relevant threshold and the household's resources have to be specified.",
+          section: "papers/models-risk-uncertainty/#x1-100004.6",
+          sectionLabel: "Section 4.6 of the paper"
+        },
+        heuristics: {
+          name: "Fast & Frugal Heuristics",
+          category: "Procedural decision rule",
+          summary: "Uses a simple rule such as: insure against losses that could seriously damage the household.",
+          reading: "The household may not estimate a precise probability at all; it may use a robust shortcut based on whether the loss would be hard to absorb.",
+          limit: "A shortcut can be sensible in this setting without being optimal or transferable to every setting.",
+          section: "papers/models-risk-uncertainty/#x1-60004.2",
+          sectionLabel: "Section 4.2 of the paper"
+        },
+        fuzzy: {
+          name: "Fuzzy / ambiguity models",
+          category: "Imprecise probabilities",
+          summary: "Keeps the uncertainty in phrases such as “roughly 1%” and “about €50,000” instead of forcing them into single precise values.",
+          reading: "The choice is evaluated over a range of plausible flood probabilities and damage amounts.",
+          limit: "The model still needs a rule for how to act when the estimates remain vague.",
+          section: "papers/models-risk-uncertainty/#x1-120004.8",
+          sectionLabel: "Section 4.8 of the paper"
+        },
+        psychological: {
+          name: "Psychological risk–return models",
+          category: "Perception and social context",
+          summary: "Looks at perceived risk, trust in the insurer, fairness of the premium, and what neighbors or media make salient.",
+          reading: "The €420 premium and the flood threat are filtered through experience, emotion, and social comparison.",
+          limit: "It can describe why the same numbers feel different, but it may not provide a single objective decision rule.",
+          section: "papers/models-risk-uncertainty/#x1-110004.7",
+          sectionLabel: "Section 4.7 of the paper"
+        },
+        quantum: {
+          name: "Quantum probability",
+          category: "Context and order effects",
+          summary: "Asks whether the order or framing of information changes the response.",
+          reading: "Hearing about a flooded neighbor before seeing the premium may produce a different judgment than seeing the premium first.",
+          limit: "The contextual mechanism can be mathematically useful while remaining difficult to interpret in ordinary economic terms.",
+          section: "papers/models-risk-uncertainty/#x1-130004.9",
+          sectionLabel: "Section 4.9 of the paper"
+        },
+        neural: {
+          name: "Deep neural networks",
+          category: "Prediction",
+          summary: "Learns patterns from many features—location, past claims, income, weather, and previous choices—to predict insurance uptake.",
+          reading: "The model may forecast who buys cover without reducing the decision to one transparent principle.",
+          limit: "High predictive performance does not by itself reveal why the household chose insurance.",
+          section: "papers/models-risk-uncertainty/#x1-140004.10",
+          sectionLabel: "Section 4.10 of the paper"
+        }
+      };
+
+      const updateLens = (lensId) => {
+        const lens = lenses[lensId];
+        if (!lens) return;
+
+        detailTitle.textContent = lens.name;
+        detailCategory.textContent = lens.category;
+        detailSummary.textContent = lens.summary;
+        detailReading.textContent = lens.reading;
+        detailLimit.textContent = lens.limit;
+        sectionLink.href = lens.section;
+        sectionLink.textContent = `Read ${lens.sectionLabel}`;
+
+        lensButtons.forEach((button) => {
+          const isSelected = button.dataset.lensId === lensId;
+          button.classList.toggle("is-selected", isSelected);
+          button.setAttribute("aria-pressed", String(isSelected));
+        });
+      };
+
+      lensButtons.forEach((button) => {
+        button.addEventListener("click", () => updateLens(button.dataset.lensId));
+      });
+
+      updateLens("eut");
+    })();
+  </script>
+</body>
+</html>
