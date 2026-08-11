@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="Research homepage of Martin H&ouml;ppner, behavioral economist at Brandenburg University of Technology Cottbus-Senftenberg.">
+  <title>Martin H&ouml;ppner | Research</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #20242d;
+      --muted: #606978;
+      --line: #d8dde4;
+      --paper: #f7f8f9;
+      --surface: #ffffff;
+      --accent: #006d68;
+      --accent-2: #97394d;
+      --accent-3: #826500;
+      --soft: #e6efed;
+      --focus: #b56b00;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.55;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.18em;
+    }
+
+    a:hover {
+      color: var(--accent-2);
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    .site {
+      min-height: 100vh;
+    }
+
+    .hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(247, 248, 249, 0.99) 0%, rgba(247, 248, 249, 0.94) 56%, rgba(230, 239, 237, 0.86) 100%),
+        var(--soft);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .wrap {
+      width: min(1140px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 70px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(216, 221, 228, 0.82);
+      font-size: 0.94rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .brand {
+      font-size: 1rem;
+      font-weight: 780;
+      letter-spacing: 0;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      padding: 3px 0;
+    }
+
+    .nav a:hover {
+      border-bottom-color: currentColor;
+    }
+
+    .hero-body {
+      display: grid;
+      align-items: center;
+      grid-template-columns: minmax(0, 1fr) minmax(250px, 320px);
+      gap: clamp(42px, 6vw, 78px);
+      padding: 40px 0 52px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-copy {
+      max-width: 700px;
+      min-width: 0;
+    }
+
+    .portrait-desktop {
+      position: relative;
+      align-self: center;
+      justify-self: end;
+      width: 100%;
+      max-width: 310px;
+      margin-right: 10px;
+    }
+
+    .portrait-desktop img,
+    .portrait-mobile {
+      aspect-ratio: 1;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .portrait-desktop img {
+      display: block;
+      width: 100%;
+      border: 1px solid rgba(151, 57, 77, 0.2);
+      box-shadow: 14px 14px 0 rgba(0, 109, 104, 0.12);
+      filter: saturate(1.04) contrast(1.04);
+    }
+
+    .portrait-mobile {
+      display: none;
+      width: 84px;
+      height: 84px;
+      margin: 0 0 20px;
+      border: 1px solid rgba(151, 57, 77, 0.28);
+      border-radius: 50%;
+      box-shadow: 6px 6px 0 rgba(0, 109, 104, 0.12);
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--accent);
+      font-size: 0.96rem;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 100%;
+      font-size: clamp(2.55rem, 5.3vw, 4.75rem);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 650px;
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-size: clamp(1.06rem, 1.7vw, 1.22rem);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 16px;
+      border: 1px solid var(--ink);
+      border-radius: 6px;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 700;
+      background: var(--surface);
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+      transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease, transform 160ms ease;
+    }
+
+    .button.primary {
+      background: var(--ink);
+      color: var(--surface);
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      border-color: var(--accent);
+    }
+
+    main {
+      padding: 12px 0 68px;
+    }
+
+    section {
+      padding: 54px 0;
+    }
+
+    main section+section {
+      border-top: 1px solid var(--line);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(190px, 0.7fr) minmax(300px, 1.3fr);
+      gap: clamp(28px, 6vw, 76px);
+      align-items: start;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(1.55rem, 2.5vw, 2.3rem);
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    .section-head p {
+      margin: 0;
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 1.03rem;
+    }
+
+    .paper-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .paper {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 28px;
+      padding: 28px 30px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      border-radius: 6px;
+    }
+
+    .paper.featured {
+      box-shadow: 0 12px 32px rgba(32, 36, 45, 0.07);
+    }
+
+    .paper h3 {
+      margin: 0 0 8px;
+      font-size: 1.18rem;
+      letter-spacing: 0;
+    }
+
+    .paper p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .status {
+      align-self: start;
+      white-space: nowrap;
+      color: var(--accent);
+      padding-top: 2px;
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .meta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 13px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .paper-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+      font-size: 0.94rem;
+      font-weight: 700;
+    }
+
+    .project-list {
+      display: grid;
+      border-top: 1px solid var(--line);
+    }
+
+    .project {
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr) auto;
+      gap: 20px;
+      align-items: start;
+      padding: 22px 4px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .project-index {
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 750;
+      font-variant-numeric: tabular-nums;
+      padding-top: 4px;
+    }
+
+    .project h3 {
+      margin: 0 0 6px;
+      font-size: 1.12rem;
+    }
+
+    .project p {
+      margin: 0;
+      max-width: 760px;
+      color: var(--muted);
+    }
+
+    .project-kind {
+      color: var(--muted);
+      font-size: 0.86rem;
+      white-space: nowrap;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .note {
+      position: relative;
+      min-height: 150px;
+      padding: 26px 26px 28px;
+      background: rgba(255, 255, 255, 0.46);
+      border-right: 1px solid var(--line);
+    }
+
+    .note:last-child {
+      border-right: 0;
+    }
+
+    .note::before {
+      content: "";
+      position: absolute;
+      top: -1px;
+      left: 26px;
+      width: 42px;
+      height: 3px;
+      background: var(--accent);
+    }
+
+    .note:nth-child(2)::before {
+      background: var(--accent-2);
+    }
+
+    .note:nth-child(3)::before {
+      background: var(--accent-3);
+    }
+
+    .note h3 {
+      margin: 0 0 10px;
+      font-size: 1.05rem;
+    }
+
+    .note p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .contact-band {
+      background: var(--ink);
+      color: var(--surface);
+      margin-top: 42px;
+      padding: 34px 0;
+    }
+
+    .contact {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .contact p {
+      margin: 0;
+      max-width: 720px;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .contact a {
+      color: var(--surface);
+    }
+
+    .contact .button {
+      flex: 0 0 auto;
+      border-color: rgba(255, 255, 255, 0.72);
+      background: transparent;
+      color: var(--surface);
+      box-shadow: none;
+    }
+
+    .contact .button:hover {
+      border-color: var(--surface);
+      background: var(--surface);
+      color: var(--ink);
+    }
+
+    footer {
+      padding: 24px 0 40px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 820px) {
+      .hero {
+        background:
+          linear-gradient(180deg, rgba(246, 247, 248, 0.98) 0%, rgba(246, 247, 248, 0.92) 100%),
+          var(--soft);
+      }
+
+      .topbar {
+        align-items: center;
+        flex-direction: row;
+      }
+
+      .hero-body {
+        min-height: auto;
+        padding: 42px 0 48px;
+        grid-template-columns: 1fr;
+      }
+
+      .portrait-desktop {
+        display: none;
+      }
+
+      .portrait-mobile {
+        display: block;
+      }
+
+      .section-head,
+      .paper {
+        grid-template-columns: 1fr;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .note {
+        min-height: auto;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .note:last-child {
+        border-bottom: 0;
+      }
+
+      .status {
+        justify-self: start;
+      }
+
+      .contact {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .wrap {
+        width: min(100% - 28px, 1140px);
+      }
+
+      .nav {
+        gap: 12px;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .portrait-mobile {
+        width: 78px;
+        height: 78px;
+        margin: 0 0 18px;
+      }
+
+      .hero-body {
+        min-height: auto;
+        padding-top: 30px;
+        padding-bottom: 42px;
+      }
+
+      .eyebrow {
+        margin-bottom: 14px;
+        font-size: 0.9rem;
+      }
+
+      .lead {
+        margin-top: 22px;
+        font-size: 1rem;
+      }
+
+      .actions {
+        margin-top: 26px;
+      }
+
+      .paper,
+      .note {
+        padding: 18px;
+      }
+
+      .paper {
+        gap: 14px;
+      }
+
+      .project {
+        grid-template-columns: 32px minmax(0, 1fr);
+        gap: 12px;
+        padding: 20px 0;
+      }
+
+      .project-kind {
+        grid-column: 2;
+        white-space: normal;
+      }
+
+      .section-head {
+        gap: 14px;
+      }
+
+      section {
+        padding: 46px 0;
+      }
+
+      .contact-band {
+        padding: 30px 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .button {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="site">
+    <header class="hero">
+      <div class="wrap">
+        <div class="topbar" aria-label="Site header">
+          <div class="brand">Martin H&ouml;ppner</div>
+          <nav class="nav" aria-label="Primary navigation">
+            <a href="#papers">Papers</a>
+            <a href="#themes">Themes</a>
+            <a href="https://orcid.org/0009-0006-7904-295X">ORCID</a>
+            <a href="https://github.com/mhoeppner89">GitHub</a>
+          </nav>
+        </div>
+
+        <div class="hero-body">
+          <div class="hero-copy">
+            <img class="portrait-mobile" src="https://avatars.githubusercontent.com/u/196459050?v=4" alt=""
+              aria-hidden="true">
+            <p class="eyebrow">Behavioral economics · risk · decision theory</p>
+            <h1>Research on decisions under risk and uncertainty.</h1>
+            <p class="lead">
+              I am a postdoctoral researcher in behavioral economics at Brandenburg
+              University of Technology Cottbus-Senftenberg. My work studies how
+              people and adaptive systems choose when outcomes are noisy, stakes
+              are uneven, and institutional environments create thresholds or
+              pressure.
+            </p>
+            <div class="actions" aria-label="Primary actions">
+              <a class="button primary" href="#papers">View papers</a>
+              <a class="button" href="https://scholar.google.com/citations?user=GeGIjN0AAAAJ&amp;hl=en">Google
+                Scholar</a>
+            </div>
+          </div>
+          <div class="portrait-desktop" aria-hidden="true">
+            <img src="https://avatars.githubusercontent.com/u/196459050?v=4" alt="">
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section id="papers" aria-labelledby="papers-title">
+        <div class="section-head">
+          <h2 id="papers-title">Publications</h2>
+          <p>
+            Selected public work on decision theory, risk behavior, and economic
+            models of uncertainty.
+          </p>
+        </div>
+
+        <div class="paper-list">
+          <article class="paper featured">
+            <div>
+              <h3>Models in Decision-Making Under Risk and Uncertainty</h3>
+              <p>
+                A Journal of Economic Surveys article comparing frameworks for
+                decision making under risk and uncertainty, with attention to model
+                selection, predictive accuracy, descriptive realism, computational
+                tractability, and ecological validity.
+              </p>
+              <div class="meta">
+                <span>Journal of Economic Surveys</span>
+                <span>2025</span>
+                <span>Decision theory</span>
+              </div>
+              <div class="paper-links">
+                <a href="papers/models-risk-uncertainty/">Read article</a>
+                <a
+                  href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=GeGIjN0AAAAJ&amp;citation_for_view=GeGIjN0AAAAJ:9yKSN-GCB0IC">Scholar
+                  record</a>
+              </div>
+            </div>
+            <span class="status">Published</span>
+          </article>
+        </div>
+      </section>
+
+      <section aria-labelledby="ongoing-title">
+        <div class="section-head">
+          <h2 id="ongoing-title">Ongoing Projects</h2>
+          <p>
+            Current work on political risk, threshold-sensitive adaptation,
+            probability weighting, and welfare inference under mechanism
+            uncertainty.
+          </p>
+        </div>
+
+        <div class="project-list">
+          <article class="project">
+            <span class="project-index" aria-hidden="true">01</span>
+            <div>
+              <h3>Risk Preferences in Political Campaigns</h3>
+              <p>
+                A political economy project on how institutional thresholds shape
+                politicians' variance and skewness incentives, and how threshold-driven
+                risk taking can erode voter trust.
+              </p>
+              <div class="meta">
+                <span>Germany and United States</span>
+                <span>Political risk</span>
+              </div>
+            </div>
+            <span class="project-kind">Political economy</span>
+          </article>
+          <article class="project">
+            <span class="project-index" aria-hidden="true">02</span>
+            <div>
+              <h3>When Linearizing Probability Weights Can Lower Welfare</h3>
+              <p>
+                A theory paper on probability weighting, ambiguity, and behavioral
+                welfare in rare-loss protection decisions.
+              </p>
+            </div>
+            <span class="project-kind">Working paper</span>
+          </article>
+          <article class="project">
+            <span class="project-index" aria-hidden="true">03</span>
+            <div>
+              <h3>The Mean-Variance-Aspiration Framework</h3>
+              <p>A formal framework for threshold-sensitive risk preference reversals.</p>
+            </div>
+            <span class="project-kind">Theory</span>
+          </article>
+          <article class="project">
+            <span class="project-index" aria-hidden="true">04</span>
+            <div>
+              <h3>Adaptive Risk Taking Under Threshold Pressure</h3>
+              <p>An agent-based model of adaptive risk heuristics under threshold selection.</p>
+            </div>
+            <span class="project-kind">Simulation</span>
+          </article>
+          <article class="project">
+            <span class="project-index" aria-hidden="true">05</span>
+            <div>
+              <h3>Bridging the Gap</h3>
+              <p>An experimental comparison of models of risk behavior.</p>
+            </div>
+            <span class="project-kind">Experiment</span>
+          </article>
+        </div>
+      </section>
+
+      <section id="themes" aria-labelledby="themes-title">
+        <div class="section-head">
+          <h2 id="themes-title">Research Themes</h2>
+          <p>
+            The common thread is how people and adaptive systems behave when
+            noisy outcomes meet thresholds, deadlines, imperfect information, and
+            institutional selection.
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="note">
+            <h3>Threshold Pressure</h3>
+            <p>How continuation cutoffs, deadlines, and survival margins change the value of risk taking.</p>
+          </article>
+          <article class="note">
+            <h3>Mechanism Uncertainty</h3>
+            <p>Why the same observed behavior can imply different welfare conclusions under different mechanisms.</p>
+          </article>
+          <article class="note">
+            <h3>Formal Behavioral Models</h3>
+            <p>Compact theory and simulation models that make behavioral assumptions explicit and testable.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <section class="contact-band" aria-label="Contact">
+      <div class="wrap contact">
+        <p>
+          For manuscripts, replication materials, or collaboration questions,
+          start from GitHub, Google Scholar, or ORCID.
+        </p>
+        <a class="button" href="https://github.com/mhoeppner89">github.com/mhoeppner89</a>
+      </div>
+    </section>
+
+    <footer class="wrap">
+      <span>&copy; 2026 Martin H&ouml;ppner.</span>
+    </footer>
+  </div>
+</body>
+
+</html>
