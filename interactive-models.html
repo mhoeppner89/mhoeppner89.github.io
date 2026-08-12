@@ -1,9 +1,11 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="An interactive companion to Martin Höppner's paper on models in decision-making under risk and uncertainty.">
+  <meta name="description"
+    content="An interactive companion to Martin Höppner's paper on models in decision-making under risk and uncertainty.">
   <title>One Choice, Many Lenses | Martin Höppner</title>
   <style>
     :root {
@@ -159,7 +161,7 @@
       line-height: 1.08;
     }
 
-    .lens-intro > p {
+    .lens-intro>p {
       max-width: 62ch;
       margin: 0;
       color: var(--muted);
@@ -185,7 +187,7 @@
       line-height: 1.15;
     }
 
-    .lens-scenario-copy > p:not(.lens-scenario-label) {
+    .lens-scenario-copy>p:not(.lens-scenario-label) {
       max-width: 62ch;
       margin: 14px 0 0;
     }
@@ -345,6 +347,7 @@
     }
 
     @media (max-width: 900px) {
+
       .lens-intro,
       .lens-scenario,
       .lens-layout {
@@ -393,6 +396,7 @@
     }
   </style>
 </head>
+
 <body>
   <header class="paper-hero">
     <div class="wrap">
@@ -405,9 +409,8 @@
       </div>
 
       <div class="hero-body">
-        <p class="kicker">Interactive companion</p>
+        <p class="kicker">Companion</p>
         <h1>Models in Decision-Making Under Risk and Uncertainty</h1>
-        <p class="byline">One decision viewed through the different model lenses discussed in the published paper.</p>
       </div>
     </div>
   </header>
@@ -421,8 +424,7 @@
             <h2 id="lens-title">One choice, many lenses</h2>
           </div>
           <p>
-            The same decision can look different depending on what a model treats as important.
-            Select a lens to see what it notices, how it reads the choice, and what it leaves open.
+            The same (fictional) decision can look different depending on what a model treats as important.
           </p>
         </div>
 
@@ -459,7 +461,7 @@
           </div>
           <div class="lens-option">
             <h4>Skip insurance</h4>
-            <p>Pay no premium; keep the financial exposure.</p>
+            <p>Pay no premium; feel risky.</p>
           </div>
         </div>
 
@@ -467,15 +469,24 @@
           <div>
             <p class="lens-selector-label" id="lens-selector-label">Select a lens</p>
             <div class="lens-buttons" aria-labelledby="lens-selector-label">
-              <button class="lens-button is-selected" type="button" aria-pressed="true" data-lens-id="eut">Expected Utility Theory</button>
-              <button class="lens-button" type="button" aria-pressed="false" data-lens-id="cpt">Cumulative Prospect Theory</button>
-              <button class="lens-button" type="button" aria-pressed="false" data-lens-id="regret">Regret Theory</button>
-              <button class="lens-button" type="button" aria-pressed="false" data-lens-id="risk-sensitivity">Risk-sensitivity Theory</button>
-              <button class="lens-button" type="button" aria-pressed="false" data-lens-id="heuristics">Fast &amp; Frugal Heuristics</button>
-              <button class="lens-button" type="button" aria-pressed="false" data-lens-id="fuzzy">Fuzzy / ambiguity models</button>
-              <button class="lens-button" type="button" aria-pressed="false" data-lens-id="psychological">Psychological risk–return models</button>
-              <button class="lens-button" type="button" aria-pressed="false" data-lens-id="quantum">Quantum probability</button>
-              <button class="lens-button" type="button" aria-pressed="false" data-lens-id="neural">Deep neural networks</button>
+              <button class="lens-button is-selected" type="button" aria-pressed="true" data-lens-id="eut">Expected
+                Utility Theory</button>
+              <button class="lens-button" type="button" aria-pressed="false" data-lens-id="cpt">Cumulative Prospect
+                Theory</button>
+              <button class="lens-button" type="button" aria-pressed="false" data-lens-id="regret">Regret
+                Theory</button>
+              <button class="lens-button" type="button" aria-pressed="false"
+                data-lens-id="risk-sensitivity">Risk-sensitivity Theory</button>
+              <button class="lens-button" type="button" aria-pressed="false" data-lens-id="heuristics">Fast &amp; Frugal
+                Heuristics</button>
+              <button class="lens-button" type="button" aria-pressed="false" data-lens-id="fuzzy">Fuzzy / ambiguity
+                models</button>
+              <button class="lens-button" type="button" aria-pressed="false" data-lens-id="psychological">Psychological
+                risk–return models</button>
+              <button class="lens-button" type="button" aria-pressed="false" data-lens-id="quantum">Quantum
+                probability</button>
+              <button class="lens-button" type="button" aria-pressed="false" data-lens-id="neural">Deep neural
+                networks</button>
             </div>
           </div>
 
@@ -484,19 +495,26 @@
             <h3 id="lens-detail-title">Expected Utility Theory</h3>
             <p class="lens-detail-category" id="lens-detail-category">Normative benchmark</p>
             <p class="lens-detail-summary" id="lens-detail-summary">
-              Compares the utility of paying €420 for protection with the utility of keeping the €50,000 exposure.
+              Compares the utility of having your current wealth minus the €420 for protection for sure with the
+              weighted sum of the utilities of keeping all your wealth and your wealth minus €50,000 in case of the
+              flood.
             </p>
             <dl>
               <div>
                 <dt>How it reads the choice</dt>
-                <dd id="lens-detail-reading">If the probability and damage estimate are credible, the decision depends on risk aversion and the value of financial security—not expected euros alone.</dd>
+                <dd id="lens-detail-reading">If the probability and damage estimate are credible, the decision depends
+                  on the probability point estimate (1%) and how you value your wealth.</dd>
               </div>
               <div>
                 <dt>What it leaves open</dt>
-                <dd id="lens-detail-limit">It does not by itself explain why a rare, vivid loss may feel more important than its probability.</dd>
+                <dd id="lens-detail-limit">It does not explain why a rare loss may feel more important
+                  than its probability. It also usually assumes a very specific utility curve that implies risk
+                  aversion.
+                </dd>
               </div>
             </dl>
-            <a class="lens-section-link" id="lens-section-link" href="papers/models-risk-uncertainty/#x1-20002">Read Section 2 of the paper</a>
+            <a class="lens-section-link" id="lens-section-link" href="papers/models-risk-uncertainty/#x1-20002">Read
+              Section 2 of the paper</a>
           </aside>
         </div>
       </div>
@@ -524,18 +542,18 @@
         eut: {
           name: "Expected Utility Theory",
           category: "Normative benchmark",
-          summary: "Compares the utility of paying €420 for protection with the utility of keeping the €50,000 exposure.",
-          reading: "If the probability and damage estimate are credible, the decision depends on risk aversion and the value of financial security—not expected euros alone.",
-          limit: "It does not by itself explain why a rare, vivid loss may feel more important than its probability.",
+          summary: "Compares the utility of having your current wealth minus the €420 for protection for sure with the weighted sum of the utilities of keeping all your wealth and your wealth minus €50,000 in case of the flood.",
+          reading: "If the probability and damage estimate are credible, the decision depends on the probability point estimate (1%) and how you value your wealth.",
+          limit: "It does not explain why a rare loss may feel more important than its probability. It also usually assumes a very specific utility curve that implies risk aversion.",
           section: "papers/models-risk-uncertainty/#x1-20002",
           sectionLabel: "Section 2 of the paper"
         },
         cpt: {
           name: "Cumulative Prospect Theory",
           category: "Reference-dependent behavior",
-          summary: "Treats the €50,000 loss as a loss relative to your home and financial security, and can give extra weight to a small chance of a large loss.",
+          summary: "Treats the €50,000 loss as a loss relative to your home and financial security, and can give extra weight to a small chance of a large loss. ",
           reading: "The vivid flood outcome and the roughly 1% probability may loom larger than their objective contribution, especially if the reference point is living safely in the house.",
-          limit: "The result depends on the chosen reference point and behavioral parameters.",
+          limit: "The result depends on the chosen reference point and behavioral parameters, e.g. in the loss domain, the curvature of the utility function implies risk-taking - this can make determining the reference point arbitrary.",
           section: "papers/models-risk-uncertainty/#x1-70004.3",
           sectionLabel: "Section 4.3 of the paper"
         },
@@ -543,7 +561,7 @@
           name: "Regret Theory",
           category: "Counterfactual comparison",
           summary: "Asks which future would be harder to live with: paying for cover when no flood occurs, or skipping it and later facing the damage.",
-          reading: "The insurance decision is a comparison between two possible regrets, not only a comparison of expected payoffs.",
+          reading: "The insurance decision is a comparison between two possible regrets (weighted by their probabilites).",
           limit: "It needs a psychologically plausible account of how the person imagines and weighs those counterfactuals.",
           section: "papers/models-risk-uncertainty/#x1-90004.5",
           sectionLabel: "Section 4.5 of the paper"
@@ -551,9 +569,9 @@
         "risk-sensitivity": {
           name: "Risk-sensitivity Theory",
           category: "Thresholds and adaptation",
-          summary: "Focuses on whether €50,000 would threaten an important financial buffer, goal, or level of security.",
+          summary: "Focuses on whether €50,000 would threaten an important financial buffer, goal, or level of security with survival and reproduction as the ultimate motives.",
           reading: "Insurance is attractive when a flood could push the household below a critical threshold, even if the average loss looks small.",
-          limit: "The relevant threshold and the household's resources have to be specified.",
+          limit: "The relevant threshold and the household's resources have to be specified. Many decisions also do not include evolutionary motives and our behavioral patterns sometimes directly contradict them. Think over-weight, thrill-seeking etc.",
           section: "papers/models-risk-uncertainty/#x1-100004.6",
           sectionLabel: "Section 4.6 of the paper"
         },
@@ -561,8 +579,8 @@
           name: "Fast & Frugal Heuristics",
           category: "Procedural decision rule",
           summary: "Uses a simple rule such as: insure against losses that could seriously damage the household.",
-          reading: "The household may not estimate a precise probability at all; it may use a robust shortcut based on whether the loss would be hard to absorb.",
-          limit: "A shortcut can be sensible in this setting without being optimal or transferable to every setting.",
+          reading: "The household may not estimate a precise probability at all; it may use a robust shortcut based on whether the loss would be hard to absorb. Even if that leads to suboptimal choices, having not to spend lots of time to make the decision might be worth it.",
+          limit: "A shortcut can be sensible in this setting without being optimal or transferable to another setting. Also, how do we predict what simple rules will form for any individual?",
           section: "papers/models-risk-uncertainty/#x1-60004.2",
           sectionLabel: "Section 4.2 of the paper"
         },
@@ -571,16 +589,16 @@
           category: "Imprecise probabilities",
           summary: "Keeps the uncertainty in phrases such as “roughly 1%” and “about €50,000” instead of forcing them into single precise values.",
           reading: "The choice is evaluated over a range of plausible flood probabilities and damage amounts.",
-          limit: "The model still needs a rule for how to act when the estimates remain vague.",
+          limit: "The model still needs a rule for how to evaluate vague estimates.",
           section: "papers/models-risk-uncertainty/#x1-120004.8",
           sectionLabel: "Section 4.8 of the paper"
         },
         psychological: {
           name: "Psychological risk–return models",
           category: "Perception and social context",
-          summary: "Looks at perceived risk, trust in the insurer, fairness of the premium, and what neighbors or media make salient.",
+          summary: "Looks at perceived risk, judged probabilities, trust in the insurer, perception of the premium, and what neighbors, media etc. make salient.",
           reading: "The €420 premium and the flood threat are filtered through experience, emotion, and social comparison.",
-          limit: "It can describe why the same numbers feel different, but it may not provide a single objective decision rule.",
+          limit: "It can describe why the same numbers feel different for one individual, but usually does not provide a single objective decision rule.",
           section: "papers/models-risk-uncertainty/#x1-110004.7",
           sectionLabel: "Section 4.7 of the paper"
         },
@@ -588,7 +606,7 @@
           name: "Quantum probability",
           category: "Context and order effects",
           summary: "Asks whether the order or framing of information changes the response.",
-          reading: "Hearing about a flooded neighbor before seeing the premium may produce a different judgment than seeing the premium first.",
+          reading: "Making the decision literally alters the individual's preferences on the matter - which can also lead to downstream effects for similar decisions. What happens before the decision is of utmost importance.",
           limit: "The contextual mechanism can be mathematically useful while remaining difficult to interpret in ordinary economic terms.",
           section: "papers/models-risk-uncertainty/#x1-130004.9",
           sectionLabel: "Section 4.9 of the paper"
@@ -596,9 +614,9 @@
         neural: {
           name: "Deep neural networks",
           category: "Prediction",
-          summary: "Learns patterns from many features—location, past claims, income, weather, and previous choices—to predict insurance uptake.",
-          reading: "The model may forecast who buys cover without reducing the decision to one transparent principle.",
-          limit: "High predictive performance does not by itself reveal why the household chose insurance.",
+          summary: "Learns patterns from many features like location, past claims, income, weather, and previous choices to predict insurance uptake.",
+          reading: "We can fit a model directly to all obervable data without having to make any assumptions about individuals' preferences, probability judgements, what they paid attention to etc. The model itself will learn (with enough data), what is important.",
+          limit: "The model may forecast well, but does not tell much on why that decision was made.",
           section: "papers/models-risk-uncertainty/#x1-140004.10",
           sectionLabel: "Section 4.10 of the paper"
         }
@@ -631,4 +649,5 @@
     })();
   </script>
 </body>
+
 </html>
