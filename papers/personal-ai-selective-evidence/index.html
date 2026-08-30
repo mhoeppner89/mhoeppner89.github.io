@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Better Information, Cheaper Capture: Personal AI and Selective Evidence by Martin Höppner. Working paper, August 2026.">
+  <title>Better Information, Cheaper Capture: Personal AI and Selective Evidence | Martin Höppner</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #20242d;
+      --muted: #606978;
+      --line: #d8dde4;
+      --paper: #f7f8f9;
+      --surface: #ffffff;
+      --accent: #006d68;
+      --accent-2: #97394d;
+      --soft: #e6efed;
+      --focus: #b56b00;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.18em;
+    }
+
+    a:hover {
+      color: var(--accent-2);
+    }
+
+    a:focus-visible,
+    .button:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    .wrap {
+      width: min(1140px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      background:
+        linear-gradient(115deg, rgba(230, 239, 237, 0.96), rgba(247, 248, 249, 0.92) 58%, rgba(242, 237, 240, 0.94)),
+        var(--soft);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 22px 0;
+      font-size: 0.94rem;
+    }
+
+    .brand {
+      font-weight: 750;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .nav a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+
+    .nav a:hover {
+      border-bottom-color: currentColor;
+    }
+
+    .hero-body {
+      padding: 62px 0 70px;
+    }
+
+    .kicker {
+      margin: 0 0 18px;
+      color: var(--accent);
+      font-size: 0.96rem;
+      font-weight: 700;
+    }
+
+    h1 {
+      max-width: 900px;
+      margin: 0;
+      font-size: clamp(2.45rem, 6vw, 5.3rem);
+      line-height: 1;
+      letter-spacing: 0;
+      overflow-wrap: break-word;
+      hyphens: auto;
+    }
+
+    .subtitle {
+      max-width: 840px;
+      margin: 22px 0 0;
+      font-size: clamp(1.12rem, 1.8vw, 1.35rem);
+    }
+
+    .byline {
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 16px;
+      border: 1px solid var(--ink);
+      border-radius: 6px;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 700;
+      background: var(--surface);
+    }
+
+    .button.primary {
+      background: var(--ink);
+      color: var(--surface);
+    }
+
+    .button:hover {
+      border-color: var(--accent);
+    }
+
+    main {
+      padding: 12px 0 68px;
+    }
+
+    .abstract {
+      display: grid;
+      grid-template-columns: minmax(180px, 0.32fr) minmax(0, 1fr);
+      gap: 38px;
+      padding: 54px 0 58px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(1.55rem, 2.5vw, 2.3rem);
+      line-height: 1.12;
+    }
+
+    .abstract p {
+      max-width: 760px;
+      margin: 0;
+      font-size: 1.06rem;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 18px;
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .details {
+      display: grid;
+      grid-template-columns: minmax(180px, 0.32fr) minmax(0, 1fr);
+      gap: 38px;
+      padding: 34px 0 44px;
+      border-top: 1px solid var(--line);
+    }
+
+    .details p {
+      max-width: 760px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 24px 0 40px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 700px) {
+      .wrap {
+        width: min(100% - 28px, 1140px);
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero-body {
+        padding: 46px 0 54px;
+      }
+
+      .abstract,
+      .details {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .abstract {
+        padding: 42px 0 48px;
+      }
+
+      h1 {
+        font-size: clamp(2.15rem, 11vw, 3.5rem);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <div class="topbar" aria-label="Site header">
+        <div class="brand">Martin Höppner</div>
+        <nav class="nav" aria-label="Primary navigation">
+          <a href="../../">Research</a>
+          <a href="better-information-cheaper-capture.pdf">Download PDF</a>
+        </nav>
+      </div>
+
+      <div class="hero-body">
+        <p class="kicker">Working paper · August 2026</p>
+        <h1>Better Information, Cheaper Capture: Personal AI and Selective Evidence</h1>
+        <p class="subtitle">Delegating policy research can improve individual decisions while lowering the cost of organized political capture.</p>
+        <p class="byline">Martin Höppner</p>
+        <div class="actions" aria-label="Paper links">
+          <a class="button primary" href="better-information-cheaper-capture.pdf">Download PDF</a>
+          <a class="button" href="../../">Research homepage</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="abstract" aria-labelledby="abstract-title">
+      <h2 id="abstract-title">Abstract</h2>
+      <div>
+        <p>
+          Personal AI could help citizens understand complex policies by filtering relevant evidence from noise. That saves time but also lets the provider decide which facts reach the user. Users may have stable broad values without a settled view on an unfamiliar policy, while the questions an AI asks to clarify those values may themselves shape what the user comes to prefer. For this paper I hold broad values fixed and model the narrower risk from evidence selection. Because checking may require much of the work the AI was meant to save, a provider offered a reward tied to the policy outcome can omit true evidence and focus on users who are likely to change, unlikely to check, or politically influential. The same user information that improves advice can thus help the provider protect an inefficient policy at lower cost. In a preregistered audit using fixed official sources, I show that a hidden instruction to favor one side changes both the selected evidence and the recommendation, while access to the full source set improves detection. My exploratory reanalysis of public experimental data suggests that information already known about people can help identify who is most likely to change their views after assistance. I therefore propose AI verification as a public good: a service that compares and summarizes evidence from independently owned systems could lower checking costs and give providers a reputational reason to expose one another's omissions, although biases shared across systems would remain.
+        </p>
+        <div class="meta" aria-label="Paper details">
+          <span>Keywords: personal AI; selective disclosure; rational ignorance; delegation; political capture; algorithm audits</span>
+          <span>JEL codes: D72 · D82 · D83 · L86</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="details" aria-labelledby="details-title">
+      <h2 id="details-title">Paper</h2>
+      <div>
+        <p>
+          The PDF is the August 2026 working-paper manuscript. It develops a model of delegated policy research, tests hidden evidence selection with a preregistered fixed-corpus audit, examines evidence on attitude movement and target allocation, and considers AI verification as a public good.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <span>© 2026 Martin Höppner.</span>
+  </footer>
+</body>
+</html>

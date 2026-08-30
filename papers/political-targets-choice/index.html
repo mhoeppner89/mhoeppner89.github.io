@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Political Targets and Choice Under Uncertainty by Martin Höppner. Working paper, August 2026.">
+  <title>Political Targets and Choice Under Uncertainty | Martin Höppner</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #20242d;
+      --muted: #606978;
+      --line: #d8dde4;
+      --paper: #f7f8f9;
+      --surface: #ffffff;
+      --accent: #006d68;
+      --accent-2: #97394d;
+      --soft: #e6efed;
+      --focus: #b56b00;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.18em;
+    }
+
+    a:hover {
+      color: var(--accent-2);
+    }
+
+    a:focus-visible,
+    .button:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    .wrap {
+      width: min(1140px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      background:
+        linear-gradient(115deg, rgba(230, 239, 237, 0.96), rgba(247, 248, 249, 0.92) 58%, rgba(242, 237, 240, 0.94)),
+        var(--soft);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 22px 0;
+      font-size: 0.94rem;
+    }
+
+    .brand {
+      font-weight: 750;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .nav a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+
+    .nav a:hover {
+      border-bottom-color: currentColor;
+    }
+
+    .hero-body {
+      padding: 62px 0 70px;
+    }
+
+    .kicker {
+      margin: 0 0 18px;
+      color: var(--accent);
+      font-size: 0.96rem;
+      font-weight: 700;
+    }
+
+    h1 {
+      max-width: 900px;
+      margin: 0;
+      font-size: clamp(2.45rem, 6vw, 5.3rem);
+      line-height: 1;
+      letter-spacing: 0;
+      overflow-wrap: break-word;
+      hyphens: auto;
+    }
+
+    .subtitle {
+      max-width: 840px;
+      margin: 22px 0 0;
+      font-size: clamp(1.12rem, 1.8vw, 1.35rem);
+    }
+
+    .byline {
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 16px;
+      border: 1px solid var(--ink);
+      border-radius: 6px;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 700;
+      background: var(--surface);
+    }
+
+    .button.primary {
+      background: var(--ink);
+      color: var(--surface);
+    }
+
+    .button:hover {
+      border-color: var(--accent);
+    }
+
+    main {
+      padding: 12px 0 68px;
+    }
+
+    .abstract {
+      display: grid;
+      grid-template-columns: minmax(180px, 0.32fr) minmax(0, 1fr);
+      gap: 38px;
+      padding: 54px 0 58px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(1.55rem, 2.5vw, 2.3rem);
+      line-height: 1.12;
+    }
+
+    .abstract p {
+      max-width: 760px;
+      margin: 0;
+      font-size: 1.06rem;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 18px;
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .details {
+      display: grid;
+      grid-template-columns: minmax(180px, 0.32fr) minmax(0, 1fr);
+      gap: 38px;
+      padding: 34px 0 44px;
+      border-top: 1px solid var(--line);
+    }
+
+    .details p {
+      max-width: 760px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 24px 0 40px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 700px) {
+      .wrap {
+        width: min(100% - 28px, 1140px);
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero-body {
+        padding: 46px 0 54px;
+      }
+
+      .abstract,
+      .details {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .abstract {
+        padding: 42px 0 48px;
+      }
+
+      h1 {
+        font-size: clamp(2.15rem, 11vw, 3.5rem);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <div class="topbar" aria-label="Site header">
+        <div class="brand">Martin Höppner</div>
+        <nav class="nav" aria-label="Primary navigation">
+          <a href="../../">Research</a>
+          <a href="political-targets-choice-under-uncertainty.pdf">Download PDF</a>
+        </nav>
+      </div>
+
+      <div class="hero-body">
+        <p class="kicker">Working paper · August 2026</p>
+        <h1>Political Targets and Choice Under Uncertainty</h1>
+        <p class="subtitle">Evidence from German and U.S. Political Actions and Senate Campaign Appeals</p>
+        <p class="byline">Martin Höppner · Brandenburg University of Technology Cottbus-Senftenberg</p>
+        <div class="actions" aria-label="Paper links">
+          <a class="button primary" href="political-targets-choice-under-uncertainty.pdf">Download PDF</a>
+          <a class="button" href="../../">Research homepage</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="abstract" aria-labelledby="abstract-title">
+      <h2 id="abstract-title">Abstract</h2>
+      <div>
+        <p>
+          Politicians face goals such as winning an election, gaining enough votes to enter parliament, or keeping enough support to hold a coalition together. These rewards change how attractive uncertain actions are. An actor just below a target rationally accepts new ways to lose in exchange for a chance of a large gain. Being above favors protecting that advantage, while withdrawal might be optimal if there is no plausible route to success. This can create a public problem when winning matters more to a politician than preserving democratic institutions or voter approval. I use a simple model to separate the value of crossing a political target from an action's other consequences and from its value to the public. I examine 1,003 documented political actions in Germany and the United States from 2005 to 2026, and 4,291 first uses of distinct templates in U.S. Senate campaign emails in 2022 and 2024. Across the two action collections, all six position comparisons point in the predicted direction. A separate email study finds more language about large possible gains among forecast underdogs. These descriptive associations do not reveal private beliefs, establish a lower expected-value choice, or identify a causal effect. I conclude with possible institutional safeguards.
+        </p>
+        <div class="meta" aria-label="Paper details">
+          <span>Keywords: political incentives; targets; choice under uncertainty; elections; democratic design</span>
+          <span>JEL codes: D72 · D81 · P16</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="details" aria-labelledby="details-title">
+      <h2 id="details-title">Paper</h2>
+      <div>
+        <p>
+          The PDF is the August 2026 working-paper manuscript, including the model, evidence from Germany and the United States, the campaign-email study, institutional implications, and appendices.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <span>© 2026 Martin Höppner.</span>
+  </footer>
+</body>
+</html>
